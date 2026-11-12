@@ -1,6 +1,6 @@
-# NightFury
+# Đèn LED WS2812 thông minh dùng ESP32-C3
 
-NightFury là firmware điều khiển 8 LED RGB WS2812 trên ESP32-C3. Bạn có thể đổi hiệu ứng bằng nút nhấn, điều khiển đèn qua trình duyệt trong cùng mạng Wi-Fi hoặc dùng ứng dụng ESP RainMaker để điều khiển từ xa. Firmware được phát triển từ ví dụ đèn thông minh trong tài liệu IoT ESP32-C3 của Espressif.
+Dự án cung cấp firmware điều khiển 8 LED RGB WS2812 trên ESP32-C3. Bạn có thể đổi hiệu ứng bằng nút nhấn, điều khiển đèn qua trình duyệt trong cùng mạng Wi-Fi hoặc dùng ứng dụng ESP RainMaker để điều khiển từ xa. Firmware được phát triển từ ví dụ đèn thông minh trong tài liệu IoT ESP32-C3 của Espressif.
 
 ## Tính năng
 
@@ -45,18 +45,23 @@ Cấp nguồn cho mô-đun LED theo thông số của mô-đun. Số lượng LE
 
 ## Biên dịch và nạp trên Windows
 
-Chạy các lệnh sau trong PowerShell đã nạp môi trường ESP-IDF. Sửa đường dẫn ESP RainMaker và cổng COM cho phù hợp với máy.
+Dùng PowerShell đã kích hoạt ESP-IDF. Đầu tiên, mở thư mục gốc của bản checkout ESP RainMaker và chạy:
 
-```powershell
+~~~powershell
 # Chạy trong thư mục gốc của bản checkout ESP RainMaker
 git submodule update --init --recursive
 $env:RAIMAKER_PATH = (Get-Location).Path
 
-Set-Location 'D:\DUT_ETE_K22_27\VXL\NightFury\Intergrated_project'
+~~~
+
+Trong cùng cửa sổ PowerShell, chuyển đến thư mục gốc của repo dự án. Chạy các lệnh sau và thay COM5 bằng cổng của bo:
+
+~~~powershell
+Set-Location ./Intergrated_project
 idf.py --version
 idf.py build
 idf.py -p COM5 flash monitor
-```
+~~~
 
 Tên biến môi trường trong CMake là `RAIMAKER_PATH`. Nếu CMake báo thiếu thành phần, kiểm tra đường dẫn này, các submodule và các thư mục được liệt kê trong `EXTRA_COMPONENT_DIRS`. Thoát serial monitor bằng `Ctrl+]`.
 
