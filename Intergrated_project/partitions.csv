@@ -1,0 +1,16 @@
+# Name,       Type, SubType, Offset,  Size, Flags
+nvs,          data, nvs,     ,        0x4000,
+otadata,      data, ota,     ,        0x2000,
+phy_init,     data, phy,     ,        0x1000,
+# NVS cho RainMaker
+rmaker,       data, nvs,     ,        0x6000,
+# Phân vùng Insights
+diagnostics,  data, 0x40,    ,        64K,
+# Tăng App từ 1600K lên 1760K để chứa đủ code
+ota_0,        app,  ota_0,   ,        1760K,
+ota_1,        app,  ota_1,   ,        1760K,
+# Các phân vùng khác
+fctry,        data, nvs,     ,        0x6000,
+coredump,     data, coredump,,        64K,
+# Nếu bạn cần sec_cert thì bỏ comment dòng dưới (nhưng coi chừng hết chỗ nếu chip < 4MB)
+# sec_cert,     0x3F, ,        ,        0x3000,
